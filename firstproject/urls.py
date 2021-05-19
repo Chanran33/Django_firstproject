@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from firstapp import views #view.py를 urls.py에서 이용할 수 있도록 import해줘야함
+from firstapp import views as first#view.py를 urls.py에서 이용할 수 있도록 import해줘야함
+from wordCount import views as wc
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.welcome,name="welcome"), #아무것도 안적힌 주소는 처음 시작시 나오는 페이지를 뜻함 
+    path('',first.welcome,name="welcome"), #아무것도 안적힌 주소는 처음 시작시 나오는 페이지를 뜻함 
     #다른 html파일에서 welcome url을 입력하는 것 대신에 쓸 수 있는 이름을 적어준다.(url대신 사용할 수 있음)
-    path('hello',views.hello,name="hello"),
+    path('hello/',first.hello,name="hello"),
+    path('wc/',wc.home,name="wc"),
+    path('wc/result/', wc.result, name="result"),
 ]
